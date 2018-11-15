@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mlockex
+spec:
+  containers:
+  - name: mlockex
+    image: mlockex:latest
+    imagePullPolicy: IfNotPresent
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      capabilities:
+        add: ["IPC_LOCK"]
+  restartPolicy: Never
